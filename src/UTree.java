@@ -125,7 +125,7 @@ public class UTree {
             return true;
         }
         UNode right = getRight(root.left);
-        crop(right);
+        cut(right);
         root.key = right.key;
         root.countLefter--;
         root.right.add--;
@@ -170,13 +170,13 @@ public class UTree {
             return;
         }
         UNode right = getRight(root.left);
-        crop(right);
+        cut(right);
         root.key = right.key;
         root.countLefter--;
         root.right.add--;
     }
 
-    private static void crop(UNode node) {
+    private static void cut(UNode node) {
         if (node.parent.left == node)
             node.parent.left = node.left;
         else
