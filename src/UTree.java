@@ -82,9 +82,8 @@ public class UTree {
             removeRoot();
             return true;
         }
-        if (index == root.countLefter) {
+        if (index == root.countLefter)
             return removeNode(root);
-        }
         if (index < root.countLefter) {
             boolean res = removeByIndex(index, root.left);
             if (res) {
@@ -93,9 +92,8 @@ public class UTree {
                     root.right.add--;
             }
             return res;
-        } else {
+        } else
             return removeByIndex(index, root.right);
-        }
     }
 
     private boolean removeNode(UNode root) {
@@ -140,9 +138,8 @@ public class UTree {
             removeRoot();
             return true;
         }
-        if (key == root.key) {
+        if (key == root.key)
             return removeNode(root);
-        }
         if (key < root.key) {
             boolean res = remove(key, root.left);
             if (res) {
@@ -151,9 +148,8 @@ public class UTree {
                     root.right.add--;
             }
             return res;
-        } else {
+        } else
             return remove(key, root.right);
-        }
     }
 
     private void removeRoot() {
