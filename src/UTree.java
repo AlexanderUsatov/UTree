@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class UTree {
 
     private UNode root;
@@ -69,6 +71,12 @@ public class UTree {
     }
 
     public boolean removeByIndex(int index) {
+        if(this.root == null) return false;
+        root.push();
+        if (index == this.root.countLefter) {
+            removeRoot();
+            return true;
+        }
         boolean res = removeByIndex(index, root);
         if (res) size--;
         return res;
@@ -78,10 +86,6 @@ public class UTree {
         if (root == null)
             return false;
         root.push();
-        if (index == this.root.countLefter) {
-            removeRoot();
-            return true;
-        }
         if (index == root.countLefter)
             return removeNode(root);
         if (index < root.countLefter) {
@@ -159,6 +163,7 @@ public class UTree {
         }
         if (root.left == null) {
             root = root.right;
+            root.add--;
             return;
         }
         if (root.right == null) {
@@ -199,6 +204,21 @@ public class UTree {
         printTree(root.left);
         System.out.println(root);
         printTree(root.right);
+    }
+
+    public LinkedList<UNode> getAll(){
+        LinkedList<UNode> res = new LinkedList<>();
+        getAll(root, res);
+        return res;
+    }
+
+    private void getAll(UNode root, LinkedList<UNode> res){
+        if (root == null) return;
+        root.push();
+        getAll(root.left, res);
+        res.add(root);
+        getAll(root.right, res);
+
     }
 
 }
