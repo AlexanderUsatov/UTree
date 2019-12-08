@@ -29,6 +29,16 @@ public class UTree {
     }
 
     public boolean remove(int key) {
+
+        if (root == null)
+            return false;
+        if (key == this.root.key) {
+            root.push();
+            removeRoot();
+            size--;
+            return true;
+        }
+
         boolean res = remove(key, root);
         if (res) size--;
         return res;
@@ -138,10 +148,6 @@ public class UTree {
         if (root == null)
             return false;
         root.push();
-        if (key == this.root.key) {
-            removeRoot();
-            return true;
-        }
         if (key == root.key)
             return removeNode(root);
         if (key < root.key) {
